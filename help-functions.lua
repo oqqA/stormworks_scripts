@@ -10,7 +10,7 @@ function loop(n,maxN) return (n-maxN) % (maxN*2) - maxN end -- use +-math.pi or 
 
 function gammaFix(v) local a,y=1.0,2.2 for i=1, #v do v[i]=((a*v[i])^y)/(255^y)*v[i] end return v end -- for real color block use: a,y=0.85,2.4
 
------- for generate rainbow
+------ for generate rainbow 
 function h2rgb(m1, m2, h)
 	if h<0 then h = h+1 end
 	if h>1 then h = h-1 end
