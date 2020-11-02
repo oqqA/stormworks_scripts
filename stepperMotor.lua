@@ -1,3 +1,5 @@
+-- 1 bug: loop mode does not work correctly when the turn process is interrupted
+
 function getP(...) local x={} for _,v in ipairs({...}) do table.insert(x, property.getNumber(v)) end; return table.unpack(x) end
 function outN(...) for i,v in ipairs({...}) do output.setNumber(i,v) end end
 function equal(a,b) return math.abs(a-b)<0.00001 end

@@ -1,6 +1,6 @@
-function getB(a,b) local x={} for v=a,b do table.insert(x, input.getBool(v))end;return table.unpack(x) end
+-- not ready
 
-function getN(a,b) local x={} for v=a,b do x[v]=input.getNumber(v)end;return x end
+function getN(o,s) local x={} for v=o,o+s do table.insert(x, input.getNumber(v))end;return table.unpack(x)end
 function outN(o, ...) for i,v in pairs({...}) do output.setNumber(o+i-1,v) end end
 
 MAX_INPUTS = 25

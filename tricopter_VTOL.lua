@@ -1,16 +1,5 @@
-function pid(p,i,d)
-    return{p=p,i=i,d=d,E=0,D=0,I=0,
-		run=function(s,sp,pv) local E,D,A 
-			E = sp-pv
-			D = E-s.E
-			A = math.abs(D-s.D)
-			s.E = E
-			s.D = D
-			s.I = A<E and s.I +E*s.i or s.I*0.5
-			return E*s.p +(A<E and s.I or 0) +D*s.d
-		end
-	}
-end
+function math.clamp(x,a,b) return x < a and a or x > b and b or x end 
+function pid(p,i,d,ci)return{p=p,i=i,d=d,ci=ci,E=0,D=0,I=0,run=function(s,sp,pv)local E,D,I;E=sp-pv;D=E-s.E;I=math.clamp(E*s.i+s.I,-s.ci,s.ci);s.E=E;s.I=I;return E*s.p+s.I+D*s.d end}end
 
 --function gj(flag,a,b) local x,fF={},input.getNumber if flag then fF = input.getBool end; for v=a,b do table.insert(x, fF(v))end;return table.unpack(x) end
 function getB(a,b) local x={} for v=a,b do table.insert(x, input.getBool(v))end;return table.unpack(x) end
@@ -36,15 +25,15 @@ paL,paR,paB,rL,rR,rB = 0
 
 isModeList = {} -- 1 - helicopter, 2 - aircraft, 3 - altitudeHold,  4 - autopilot, 
 
-pid1 = pid(0.1, 0, 4)
-pid2 = pid(0.1, 0, 2)
-pid3 = pid(4, 0.01, 4)
+pid1 = pid(0.1, 0, 4, 10000)
+pid2 = pid(0.1, 0, 2, 10000)
+pid3 = pid(4, 0.01, 4, 10000)
 
-pid4 = pid(0.1, 1, 0.1)
+pid4 = pid(0.1, 1, 0.1, 10000)
 
-pidL = pid(0.1, 0, 4)
-pidR = pid(0.1, 0, 4)
-pidB = pid(0.1, 0.001, 4)
+pidL = pid(0.1, 0, 4, 10000)
+pidR = pid(0.1, 0, 4, 10000)
+pidB = pid(0.1, 0.001, 4, 10000)
 
 
 function helicopterMode()
