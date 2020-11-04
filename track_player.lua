@@ -1,5 +1,5 @@
 function getN(o,s) local x={} for v=o,o+s do table.insert(x, input.getNumber(v))end;return table.unpack(x)end
-function outN(o, ...) for i,v in pairs({...}) do output.setNumber(o+i-1,v) end end
+function outN(o, ...) for i,v in ipairs({...}) do output.setNumber(o+i-1,v) end end
 function loop(n,maxN) return (n-maxN) % (maxN*2) - maxN end
 
 steps = 50
@@ -15,12 +15,12 @@ lastActivDistance = 0
 
 function f(u) return math.floor( (math.sqrt(u*4-1)-1)/2 )*2+2 end
 
-function kek() tick = tick + 1 if tick > 120 then mode,tick = 1,1 end end
+function kek() tick = tick + 1 if tick > 120-5 then azimut=-0.5 end if tick > 120 then mode,tick = 1,1 end end
 
-function find2()
+function find2() -- попробывать отрисовать
     if detect then tick = tick - 5 end
-    size = f(tick)%100
-    azimut = -math.pi+((tick%size)*(math.pi/size)+math.pi/size)*2
+    size = f(tick)%50
+    azimut = -math.pi+(tick%(size*2))*(math.pi/size)+math.pi/size
     tick = tick + 1
     if detect then 
         mode, tick = 2, 1
@@ -35,20 +35,20 @@ function find()
     tick = tick + 1
 
     if detect then
-        mode, lastActivDistance = 2, distance
+        mode, tick, lastActivDistance = 2, 1, distance
 		min, max = azimut, azimut
-        return true
     end
 end
 
 function findMin()
     if detect then
-        min = min - constStep
-        azimut = min
+        min = min - constSteps
     else
-        min = min + constStep*4
+        min = min + constSteps
+        tick = 1
         mode = 3
     end
+    azimut = min
 end
 
 function reFindMin()
@@ -60,17 +60,17 @@ function reFindMin()
             return true
         end
 
-        min = min + constStep
+        min = min + constSteps
         azimut = min
     end
 end
 
 function findMax()
     if detect then
-        max = max + constStep
+        max = max + constSteps
         azimut = max
     else
-        max = max - constStep*4
+        max = max - constSteps*4
         mode = 5
     end
 end
@@ -83,12 +83,12 @@ function reFindMax()
             mode = 1
             return true
         end
-        max = max - constStep
+        max = max - constSteps
         azimut = max
     end
 end
 
-modes = { find, kek, findMin, reFindMin, findMax, reFindMax }
+modes = { find, findMin, kek, reFindMin, findMax, reFindMax }
 
 function onTick()
     alt, distance, strength = getN(1,3)
