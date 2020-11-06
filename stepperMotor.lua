@@ -1,3 +1,4 @@
+-- https://steamcommunity.com/sharedfiles/filedetails/?id=2256432144
 -- 1 bug: loop mode does not work correctly when the turn process is interrupted
 
 function getP(...) local x={} for _,v in ipairs({...}) do table.insert(x, property.getNumber(v)) end; return table.unpack(x) end
