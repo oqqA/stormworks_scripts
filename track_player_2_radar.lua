@@ -12,7 +12,7 @@ function outN(o,...) for i,v in ipairs({...}) do output.setNumber(o+i-1,v) end e
 
 delayTick = 4
 radarBelowOrAbove, x0, y0, z0 = getP("radar up or down","x0","y0","z0")
-rP = { {y0,-x0-3}, {y0,-x0} } -- radarsPoz
+rP = { {y0,-x0-3}, {y0,-x0} } --=| radarsPoz 
 d = math.sqrt( (rP[2][1]-rP[1][1])^2 + (rP[2][2]-rP[1][2])^2 )
 
 
@@ -57,7 +57,7 @@ function track()
     y = y * math.cos(minR[3]*2*math.pi)
     z = z + z0
 
-    x, y = -y, x -- rotate coordinate
+    x, y = -y, x --=| rotate coordinate 
 
     ---
     
