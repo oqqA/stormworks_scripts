@@ -14,3 +14,5 @@ function hex2rgb(h) local h = h:gsub("#","") return tonumber(h:sub(1,2),16), ton
 function rotatePoint(r, d, x0, y0) return x0 + d * math.sin(r), y0 - d * math.cos(r) end -- radian, dist, x0, y0
 function drawPixel(x,y) screen.drawText(x-1,y-4,".") end
 --function drawPixel(x,y,s) screen.drawCircle(X1 + x, Y1 + y, s) end
+
+function p(x,y) return {x=x,y=y} end
