@@ -16,3 +16,8 @@ function drawPixel(x,y) screen.drawText(x-1,y-4,".") end
 --function drawPixel(x,y,s) screen.drawCircle(X1 + x, Y1 + y, s) end
 
 function p(x,y) return {x=x,y=y} end
+
+function outCoords(o, k) for i=0,#k*3-1 do output.setNumber(o+i,k[i//3+1][i%3+1]) end end -- expl: k={{1,2,3}, {3,2,1}, ...}
+
+--<> pack several int to int
+--<> unpack int to several int
