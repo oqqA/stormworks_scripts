@@ -1,10 +1,10 @@
-MAX_INPUT = 5
+MAX_INPUT = 3
 SIZE_BUF = 600
 GAP = 2
 RIGHT_INDENT = 23
 TOP_INDENT = 12
 
-function getN(o,s) local x={} for v=o,o+s do x[v]=input.getNumber(v) end;return x end
+function getN(o,s) local x={} for v=o,o+s do table.insert(x, input.getNumber(v)) end;return x end
 function getB(o,s) local x={} for v=o,o+s do x[v]=input.getBool(v) end;return x end
 function hex2rgb(h) local h = h:gsub("#","") return {tonumber(h:sub(1,2),16), tonumber(h:sub(3,4),16), tonumber(h:sub(5,6),16)} end
 function p(x,y) return {x=x,y=y} end
@@ -56,7 +56,7 @@ graphs={}
 tick = 0
 
 function onTick()
-    data = getN(1,MAX_INPUT-1)
+    data = getN(5,MAX_INPUT-1)
     for k,v in pairs(data) do
         if not graphs[k] then graphs[k] = graph(hex2rgb(rainbow5colors[k])) end
         graphs[k]:add(tick, v)
@@ -80,9 +80,17 @@ function onDraw()
 	
 	screen.drawLine(0,14,wh.x,14)
 	screen.drawLine(wh.x-indents.x+1,0,wh.x-indents.x+1,wh.y)
-
+	
+	range = 0.2
+    rangeL = (wh.x-(indents.x-1)*2)*range -- magic
+	
+	screen.setColor(255,255,255,50)
+	screen.drawRectF(wh.x-indents.x-rangeL,1,rangeL,11)
+	
     for _,v in pairs(graphs) do
         v:draw(tick, wh.x-indents.x, p(-indents.x, 3), scale, wh)
-        v:draw(tick, wh.x-indents.x, p(-indents.x, 3), p(0.25, 6), p(wh.x, 8))
+        v:draw(tick, wh.x-indents.x, p(-indents.x, 3), p(range, 6), p(wh.x, 8))
     end
+    
+    --screen.drawLine(20,2,20,14)
 end
