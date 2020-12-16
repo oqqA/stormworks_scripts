@@ -13,7 +13,7 @@ Projects:
 - [Stepper motor](#stepper-motor)
 
 ---
-##My Library
+## My Library
 
 - ### Help functions
 Source code: [help-functions.lua](MyLib/help-functions.lua)
@@ -23,29 +23,29 @@ Source code: [help-functions.lua](MyLib/help-functions.lua)
 | getP(...)      | get property data |
 | getN(start, count)   | get number data |
 | outN(start, ...) |  output numbers | 
-|
+| | | 
 | math.sign(number) | get number sign |
-| math.clamp(number, min, max) | get number in range
-| pid(p, i, d, max_error) | get pid
-|
-| loop(number, max_value_module) | get looped value
-| 
-| gammaFix(bad_colors[]) | get fix gamma of the color
+| math.clamp(number, min, max) | get number in range |
+| pid(p, i, d, max_error) | get pid |
+| | | 
+| loop(number, max_value_module) | get looped value |
+| | | 
+| gammaFix(bad_colors[]) | get fix gamma of the color |
 | hex2rgb(hex) | get rgb from hex | local r,g,b = hex2rgb('#00FF00')
-|
-| rotatePoint(radian, lenght, x0, y0) | get rotate point
-| drawPixel(x,y) | draw pixel
-|
-| p(x,y) | get point structure
-|
-| outCoords(start, data[[x,y,z],[x,y,z],...]) | output coordinates
-|
-| pack() | 
-| unpack() |
+| | | 
+| rotatePoint(radian, lenght, x0, y0) | get rotate point |
+| drawPixel(x,y) | draw pixel |
+| | | 
+| p(x,y) | get point structure |
+| | | 
+| outCoords(start, data[[x,y,z],[x,y,z],...]) | output coordinates |
+| | | 
+| pack() | |
+| unpack() | |
 
 
 ---
-#Projects
+# Projects
 
 - ## <a id="monitoring"></a> Monitoring
 
