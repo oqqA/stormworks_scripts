@@ -2,8 +2,6 @@ This my collection stormworks scripts
 
 ---
 
-[p](#projects)
-
 MyLib:
 - [Help functions](#help-functions)
   
