@@ -47,7 +47,7 @@ Source code: [help-functions.lua](MyLib/help-functions.lua)
 ---
 # Projects
 
-- ## <a id="monitoring"></a> Monitoring
+- ## Monitoring
 
 - ## Drone
 

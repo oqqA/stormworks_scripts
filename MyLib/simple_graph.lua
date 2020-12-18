@@ -1,3 +1,5 @@
+--<> todo: update use code from monitroing stand
+
 -- demo: https://lua.flaffipony.rocks/?id=DG4ptnFoV
 
 MAX_INPUT = 10

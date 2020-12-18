@@ -1,0 +1,1 @@
+function p3(a) return {x=a[1],y=a[2],z=a[3]} end

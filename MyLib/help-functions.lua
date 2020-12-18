@@ -11,13 +11,18 @@ function loop(n,maxN) return (n-maxN) % (maxN*2) - maxN end -- use +-math.pi or 
 function gammaFix(v) local a,y=1.0,2.2 for i=1, #v do v[i]=((a*v[i])^y)/(255^y)*v[i] end return v end -- for real color block use: a,y=0.85,2.4
 function hex2rgb(h) local h = h:gsub("#","") return tonumber(h:sub(1,2),16), tonumber(h:sub(3,4),16), tonumber(h:sub(5,6),16) end
 
+
 function rotatePoint(r, d, x0, y0) return x0 + d * math.sin(r), y0 - d * math.cos(r) end -- radian, dist, x0, y0
 function drawPixel(x,y) screen.drawText(x-1,y-4,".") end
 --function drawPixel(x,y,s) screen.drawCircle(X1 + x, Y1 + y, s) end
 
 function p(x,y) return {x=x,y=y} end
+function p3(a) return {x=a[1],y=a[2],z=a[3]} end
 
 function outCoords(o, k) for i=0,#k*3-1 do output.setNumber(o+i,k[i//3+1][i%3+1]) end end -- expl: k={{1,2,3}, {3,2,1}, ...}
 
 --<> pack several int to int
 --<> unpack int to several int
+
+
+function split(s, d) local x = {} for m in (s..d):gmatch("(.-)"..d) do table.insert(x, tonumber(m)) end; return x; end
