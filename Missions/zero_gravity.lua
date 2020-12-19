@@ -7,19 +7,29 @@ spawned_items = {}
 used_id = nil
 USER_ID = 0
 
+function getDial(n, ...) local x={} for _,v in ipairs({...}) do table.insert(x, ({server.getVehicleDial(n, v)})[1]) end; return table.unpack(x) end
+
 function onCreate(is_world_create)
 	server.announce("[Server]", "reloaded")
 
     playlist_index = server.getPlaylistIndexCurrent()
 end
 
+interval = 60
+
+tick = 0
 function onTick(game_ticks)
+    tick = tick + 1
     if used_id then
+        ws, ad, ud, lr, b1, b2, b3, b4, signal_str = getDial(used_id, "ws","ad","ud","lr","1","2","3","4","signal strength")
+
+        m = server.getPlayerPos(USER_ID)
+        x,y,z = matrix.position(m)
         x,y,z = server.getPlayerLookDirection(USER_ID)
 
-        server.setVehicleKeypad(used_id, "x", x)
-        server.setVehicleKeypad(used_id, "y", y)
-        server.setVehicleKeypad(used_id, "z", z)
+        if b1 == 1 and (tick % interval == 0)  then
+            server.setPlayerPos(USER_ID, m)
+        end
     else
         for _, v in pairs(spawned_items) do
             _, is = server.getVehicleDial(v, USED_NAME_DIAL)
@@ -66,5 +76,8 @@ function onCustomCommand(full_message, user_peer_id, is_admin, is_auth, command,
     end
     if (command == "?use") then
         used_id = a1
+    end
+    if (command == "?int") then
+        interval = a1
     end
 end
