@@ -5,6 +5,7 @@ function v3(x, y, z)
     if type(x)=="table" then r={x=x[1],y=x[2],z=x[3]} end 
     
     f = {
+        get = function(v) return v.x, v.y, v.z end,
         len = function(v) return #v end,
         norm = function(v) local l=#v return v3(v.x/l,v.y/l,v.z/l) end,
         dot = function(v, n) return v.x*n.x+v.y*n.y+v.z*n.z end,
